@@ -48,34 +48,22 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.html#hero" class="">Home</a></li>
-          <li><a href="index.html#about">About</a></li>
-          <li><a href="index.html#features">Features</a></li>
-          <li><a href="index.html#services">Services</a></li>
-          <li><a href="index.html#pricing">Pricing</a></li>
-          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="#">Dropdown 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
-            </ul>
-          </li>
-          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="/#hero" class="">Home</a></li>
+          <li><a href="/#misi">Misi</a></li>
+          <li><a href="/#informasi">Informasi</a></li>
+          <li><a href="/#berita">Berita</a></li>
+          <li><a href="/#galeri">Galeri</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+          <li><a href="/#daftar">Daftar</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="index.html#about">Get Started</a>
+      @if (auth()->check())
+        <a class="btn-getstarted" href="/dashboard">Dashboard</a>
+      @else
+        <a class="btn-getstarted" href="/login">Login</a>
+      @endif
 
     </div>
   </header>
@@ -98,7 +86,7 @@
     </section><!-- /Hero Section -->
 
     <!-- Featured Services Section -->
-    <section id="featured-services" class="featured-services section">
+    <section id="misi" class="featured-services section">
 
       <div class="container">
 
@@ -254,7 +242,7 @@
     </section><!-- /Featured Services Section -->
 
     <!-- About Section -->
-    <section id="about" class="about section">
+    <section id="informasi" class="about section">
 
       <div class="container">
 
@@ -293,8 +281,45 @@
       </div>
     </section><!-- /About Section -->
 
+    <!--Section: News of the day-->
+    <section id="berita" class="section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Berita</h2>
+      </div><!-- End Section Title -->
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        @foreach ($beritas as $berita)
+            
+          <div class="row gx-5">
+            <div class="col-md-6 mb-4">
+              <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
+                <img src="/storage/{{ $berita->foto }}" alt="errorIMG" class="img-fluid w-100 h-100" />
+                <a href="#!">
+                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                </a>
+              </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+              <h4><strong>{{ $berita->judul }}</strong></h4>
+              <p class="text-muted">
+                {{ $berita->isi }}
+              </p>
+            </div>
+          </div>
+
+        @endforeach
+
+        <div class="d-flex justify-content-center">
+          {{ $beritas->fragment('berita')->links() }}
+        </div>
+
+      </div>
+    </section>
+
+    <!--Section: News of the day-->
+
     <!-- Features Section -->
-    <section id="features" class="features section">
+    <section id="galeri" class="features section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -302,16 +327,16 @@
       </div><!-- End Section Title -->
 
       <!-- Gallery -->
-        <div class="row w-75 m-auto">
+        <div class="row w-75 m-auto" data-aos="fade-up">
             <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
             <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
+                src="/assets/quickstart/img/galeri/landscape1.jpg"
                 class="w-100 shadow-1-strong rounded mb-4"
                 alt="Boat on Calm Water"
             />
         
             <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain1.webp"
+                src="/assets/quickstart/img/galeri/potrait1.jpg"
                 class="w-100 shadow-1-strong rounded mb-4"
                 alt="Wintry Mountain Landscape"
             />
@@ -319,13 +344,13 @@
         
             <div class="col-lg-4 mb-4 mb-lg-0">
             <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp"
+                src="/assets/quickstart/img/galeri/potrait2.jpg"
                 class="w-100 shadow-1-strong rounded mb-4"
                 alt="Mountains in the Clouds"
             />
         
             <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
+                src="/assets/quickstart/img/galeri/landscape2.jpg"
                 class="w-100 shadow-1-strong rounded mb-4"
                 alt="Boat on Calm Water"
             />
@@ -333,13 +358,13 @@
         
             <div class="col-lg-4 mb-4 mb-lg-0">
             <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(18).webp"
+                src="/assets/quickstart/img/galeri/landscape3.jpg"
                 class="w-100 shadow-1-strong rounded mb-4"
                 alt="Waves at Sea"
             />
         
             <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain3.webp"
+                src="/assets/quickstart/img/galeri/potrait3.jpg"
                 class="w-100 shadow-1-strong rounded mb-4"
                 alt="Yosemite National Park"
             />
@@ -416,12 +441,12 @@
     </section><!-- /Faq Section -->
 
     <!-- Contact Section -->
-    <section id="contact" class="contact section">
+    <section id="daftar" class="contact section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <h2>Pendaftaran</h2>
+        <p>Form pendaftaran calon siswa</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -431,24 +456,24 @@
           <div class="col-lg-6">
             <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
               <i class="bi bi-geo-alt"></i>
-              <h3>Address</h3>
-              <p>A108 Adam Street, New York, NY 535022</p>
+              <h3>Alamat Kami</h3>
+              <p>Jln.Ir.M.Putuhena, POKA, Kec. Teluk Ambon, Kota Ambon, Maluku, 97233</p>
             </div>
           </div><!-- End Info Item -->
 
           <div class="col-lg-3 col-md-6">
             <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
               <i class="bi bi-telephone"></i>
-              <h3>Call Us</h3>
-              <p>+1 5589 55488 55</p>
+              <h3>No Telepon Kami</h3>
+              <p>+62 8128 9112 565</p>
             </div>
           </div><!-- End Info Item -->
 
           <div class="col-lg-3 col-md-6">
             <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
               <i class="bi bi-envelope"></i>
-              <h3>Email Us</h3>
-              <p>info@example.com</p>
+              <h3>Email Kami</h3>
+              <p>sdnpoka1@gmail.com</p>
             </div>
           </div><!-- End Info Item -->
 
@@ -456,35 +481,77 @@
 
         <div class="row gy-4 mt-1">
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" frameborder="0" style="border:0; width: 100%; height: 400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1990.8634706643209!2d128.19125186668822!3d-3.6496041843153204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d6ceed687d2f471%3A0xc3ca3896eacec160!2sSD%20N%201%2C2%20%26%203%20POKA!5e0!3m2!1sid!2sid!4v1716284992930!5m2!1sid!2sid" frameborder="0" style="border:0; width: 100%; height: 400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div><!-- End Google Maps -->
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
+            <form action="/pendaftaran" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="400" enctype="multipart/form-data">
+              @csrf
               <div class="row gy-4">
 
-                <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-                </div>
-
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                <div class="col-md-12">
+                  <label class="mb-2">Nama Lengkap Calon Siswa</label>
+                  <input type="text" name="nama_calon_siswa" class="form-control" required>
                 </div>
 
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                  <label class="mb-2">Jenis Kelamin</label><br>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="jenis_kelamin" id="Laki-laki" value="laki-laki" required>
+                    <label class="form-check-label" for="Laki-laki">Laki-laki</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="jenis_kelamin" id="perempuan" value="perempuan">
+                    <label class="form-check-label" for="perempuan">Perempuan</label>
+                  </div>
                 </div>
 
                 <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                  <label class="mb-2">Tempat & Tanggal Lahir</label><br>
+                  <div class="row">
+                    <div class="col-5"><input type="text" name="tempat_lahir" class="form-control" required></div>
+                    <div class="col-2 text-center">-</div>
+                    <div class="col-5"><input type="date" name="tanggal_lahir" class="form-control" required></div>
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <label class="mb-2">Alamat</label>
+                  <textarea name="alamat" class="form-control" required></textarea>
+                </div>
+
+                <div class="col-md-12">
+                  <label class="mb-2">No Telepon</label>
+                  <input type="number" name="no_telepon" class="form-control" required>
+                </div>
+
+                <div class="col-md-12">
+                  <label class="mb-2">Email (optional)</label>
+                  <input type="email" name="email" class="form-control">
+                </div>
+
+                <div class="col-md-12">
+                  <label class="mb-2">Nama Lengkap Orangtua / Wali</label>
+                  <input type="text" name="nama_wali" class="form-control" required>
+                </div>
+
+                <div class="col-md-12">
+                  <label class="mb-2">No Telepon Orangtua Wali</label>
+                  <input type="number" name="no_telepon_wali" class="form-control" required>
+                </div>
+
+                <div class="col-md-12">
+                  <label class="mb-2">Akta Kelahiran Calon Siswa</label>
+                  <input type="file" name="akta_kelahiran" class="form-control" required>
+                </div>
+
+                <div class="col-md-12">
+                  <label class="mb-2">Kartu Keluarga Calon Siswa</label>
+                  <input type="file" name="kartu_keluarga" class="form-control" required>
                 </div>
 
                 <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
+                  <button type="submit">Daftar</button>
                 </div>
 
               </div>
@@ -578,7 +645,6 @@
 
   <!-- Vendor JS Files -->
   <script src="/assets/quickstart/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/assets/quickstart/vendor/php-email-form/validate.js"></script>
   <script src="/assets/quickstart/vendor/aos/aos.js"></script>
   <script src="/assets/quickstart/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="/assets/quickstart/vendor/swiper/swiper-bundle.min.js"></script>
@@ -586,6 +652,7 @@
   <!-- Main JS File -->
   <script src="/assets/quickstart/js/main.js"></script>
 
+  @include('layouts.toast')
 </body>
 
 </html>
