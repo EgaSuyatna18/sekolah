@@ -9,24 +9,28 @@
       <tr>
         <th scope="col">No</th>
         <th scope="col">Foto</th>
-        <th scope="col">Judul</th>
-        <th scope="col">Isi</th>
+        <th scope="col">Nama</th>
+        <th scope="col">Tanggal Lahir</th>
+        <th scope="col">Alamat</th>
+        <th scope="col">Nama Orangtua</th>
         <th scope="col">Aksi</th>
       </tr>
     </thead>
     <tbody>
-      @foreach ($beritas as $berita)
+      @foreach ($siswas as $siswa)
           <tr>
             <td>{{ $loop->index + 1 }}</td>
-            <td><img src="/storage/{{ $berita->foto }}" alt="errorIMG" class="img-fluid" style="width: 600px; height: 300px;"></td>
-            <td>{{ $berita->judul }}</td>
-            <td style="overflow: scroll;">{{ $berita->isi }}</td>
+            <td><img src="/storage/{{ $siswa->foto }}" alt="errorIMG" class="img-fluid" style="width: 300px; height: 300px;"></td>
+            <td>{{ $siswa->nama }}</td>
+            <td>{{ $siswa->tanggal_lahir }}</td>
+            <td>{{ $siswa->alamat }}</td>
+            <td>{{ $siswa->nama_orangtua }}</td>
             <td>
               <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ubahModal"
-                onclick="setData('{{ $berita->id }}', '{{ $berita->judul }}', '{{ $berita->isi }}')">
+                onclick="setData('{{ $siswa->id }}', '{{ $siswa->nama }}', '{{ $siswa->tanggal_lahir }}', '{{ $siswa->alamat }}', '{{ $siswa->nama_orangtua }}')">
                 Ubah
               </button>
-              <a href="/berita/{{ $berita->id }}" onclick="return confirm('Hapus data?')" class="btn btn-danger">Hapus</a>
+              <a href="/siswa/{{ $siswa->id }}" onclick="return confirm('Hapus data?')" class="btn btn-danger">Hapus</a>
             </td>
           </tr>
       @endforeach
@@ -34,7 +38,7 @@
   </table>
 
   <div class="d-flex justify-content-end">
-    {{ $beritas->links() }}
+    {{ $siswas->links() }}
   </div>
 
   <div class="modal fade" id="tambahModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
@@ -45,19 +49,27 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="/berita" method="post" id="tambahForm" enctype="multipart/form-data">
+          <form action="/siswa" method="post" id="tambahForm" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
               <label>Foto</label>
               <input type="file" name="foto" class="form-control" required>
             </div>
             <div class="mb-3">
-              <label>Judul</label>
-              <input type="text" name="judul" class="form-control" required>
+              <label>Nama</label>
+              <input type="text" name="nama" class="form-control" required>
             </div>
             <div class="mb-3">
-              <label>Isi</label>
-              <textarea name="isi" class="form-control" required></textarea>
+              <label>Tanggal Lahir</label>
+              <input type="date" name="tanggal_lahir" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label>Alamat</label>
+              <textarea name="alamat" class="form-control" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label>Nama Orangtua</label>
+              <input type="text" name="nama_orangtua" class="form-control" required>
             </div>
           </form>
         </div>
@@ -88,12 +100,20 @@
             <input type="file" name="foto" class="form-control">
           </div>
           <div class="mb-3">
-            <label>Judul</label>
-            <input type="text" name="judul" id="ubahJudul" class="form-control" required>
+            <label>Nama</label>
+            <input type="text" name="nama" id="ubahNama" class="form-control" required>
           </div>
           <div class="mb-3">
-            <label>Isi</label>
-            <textarea name="isi" id="ubahISI" class="form-control" required></textarea>
+            <label>Tanggal Lahir</label>
+            <input type="date" name="tanggal_lahir" id="ubahTanggalLahir" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label>Alamat</label>
+            <textarea name="alamat" class="form-control" id="ubahAlamat" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label>Nama Orangtua</label>
+            <input type="text" name="nama_orangtua" id="ubahNamaOrangtua" class="form-control" required>
           </div>
         </form>
       </div>
@@ -106,10 +126,12 @@
 </div>
 
 <script>
-  function setData(id, judul, isi) {
-    ubahForm.action = '/berita/' + id;
-    ubahJudul.value = judul;
-    ubahISI.value = isi;
+  function setData(id, nama, tanggalLahir, alamat, namaOrangtua) {
+    ubahForm.action = '/siswa/' + id;
+    ubahNama.value = nama;
+    ubahTanggalLahir.value = tanggalLahir;
+    ubahAlamat.value = alamat;
+    ubahNamaOrangtua.value = namaOrangtua;
   }
 </script>
 @endsection

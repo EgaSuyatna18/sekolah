@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\MataPelajaran;
 use App\Models\Pendidik;
 use App\Models\Berita;
+use App\Models\Siswa;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -125,6 +126,7 @@ class DatabaseSeeder extends Seeder
 
         Pendidik::factory(10)->create();
         Berita::factory(10)->create();
+        Siswa::factory(10)->create();
 
     }
 }

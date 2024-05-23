@@ -40,23 +40,43 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="/dashboard">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            <div class="sb-sidenav-menu-heading">Akademik</div>
-                            <a class="nav-link" href="/mata_pelajaran">
-                                <div class="sb-nav-link-icon"><i class="fas fa-window-restore"></i></div>
-                                Mata Pelajaran
-                            </a>
-                            <a class="nav-link" href="/pendidik">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chalkboard-user"></i></div>
-                                Pendidik
-                            </a>
-                            <a class="nav-link" href="/berita">
-                                <div class="sb-nav-link-icon"><i class="fas fa-newspaper"></i></div>
-                                Berita
-                            </a>
+                            @if (auth()->user()->role == 'admin')
+                            
+                                <div class="sb-sidenav-menu-heading">Akademik</div>
+                                <a class="nav-link" href="/mata_pelajaran">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-window-restore"></i></div>
+                                    Mata Pelajaran
+                                </a>
+                                <a class="nav-link" href="/pendidik">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-chalkboard-user"></i></div>
+                                    Pendidik
+                                </a>
+                                <a class="nav-link" href="/berita">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-newspaper"></i></div>
+                                    Berita
+                                </a>
+                                <div class="sb-sidenav-menu-heading">Siswa</div>
+                                <a class="nav-link" href="/siswa">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                    Siswa
+                                </a>
+                                <a class="nav-link" href="/kehadiran">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-clipboard-user"></i></div>
+                                    Kehadiran
+                                </a>
+                                <a class="nav-link" href="/nilai">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-arrow-up-1-9"></i></div>
+                                    Nilai
+                                </a>
+                                <a class="nav-link" href="/prestasi">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-trophy"></i></div>
+                                    Prestasi
+                                </a>
+                            @endif
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
