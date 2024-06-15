@@ -30,4 +30,10 @@ class PendaftaranController extends Controller
         
         return redirect('/')->with('success', 'Berhasil melakukan pendaftaran.');
     }
+    
+    function pendaftaran() {
+        $title = config('app.name') . ' | Pendaftaran';
+        $pendaftarans = Pendaftaran::paginate(10);
+        return view('dashboard.pendaftaran', compact('title', 'pendaftarans'));
+    }
 }

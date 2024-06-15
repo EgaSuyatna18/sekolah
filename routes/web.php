@@ -18,6 +18,7 @@ use App\Http\Controllers\PrestasiController;
 Route::get('/', [LandingPageController::class, 'index']);
 
 route::post('/pendaftaran', [PendaftaranController::class, 'daftar']);
+route::get('/pendaftaran', [PendaftaranController::class, 'pendaftaran']);
 
 route::get('/dashboard', [DashboardController::class, 'index']);
 route::get('/dashboard/{key}/search', [DashboardController::class, 'search']);

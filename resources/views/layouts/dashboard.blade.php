@@ -45,7 +45,11 @@
                                 Dashboard
                             </a>
                             @if (auth()->user()->role == 'admin')
-                            
+                                <div class="sb-sidenav-menu-heading">Core</div>
+                                <a class="nav-link" href="/pendaftaran">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-paperclip"></i></div>
+                                    Pendaftaran
+                                </a>
                                 <div class="sb-sidenav-menu-heading">Akademik</div>
                                 <a class="nav-link" href="/mata_pelajaran">
                                     <div class="sb-nav-link-icon"><i class="fas fa-window-restore"></i></div>
